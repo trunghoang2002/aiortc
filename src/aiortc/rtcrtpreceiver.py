@@ -64,6 +64,10 @@ def decoder_worker(
             break
         codec, encoded_frame = task
 
+        if codec.mimeType.lower() == "video/rtx":
+            print(f"codec: {codec}")
+            continue
+
         if codec.name != codec_name:
             decoder = get_decoder(codec)
             codec_name = codec.name
